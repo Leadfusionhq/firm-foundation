@@ -22,9 +22,19 @@ export const loginUser = createAsyncThunk<LoginResponse, { email: string; passwo
       const { data } = await axios.post<LoginResponse>('/api/auth/login', { email, password });
       saveToken(data.token);
       return data;
-    } catch (err: any) {
-      if (err.response && err.response.data) {
-        return rejectWithValue(err.response.data.error || 'Login failed');
+    } catch (err: unknown) {
+      function isAxiosErrorWithResponse(error: unknown): error is { response: { data: { error?: string } } } {
+        return (
+          typeof error === 'object' &&
+          error !== null &&
+          'response' in error &&
+          typeof (error as { response?: unknown }).response === 'object' &&
+          (error as { response?: unknown }).response !== null &&
+          'data' in (error as { response?: { data?: unknown } }).response!
+        );
+      }
+      if (isAxiosErrorWithResponse(err)) {
+        return rejectWithValue((err.response.data as { error?: string }).error || 'Login failed');
       }
       return rejectWithValue('An unexpected error occurred');
     }
@@ -48,15 +58,33 @@ export const registerUser = createAsyncThunk<{ message: string }, { name: string
         zipCode,
       });
       return data as { message: string };
-    } catch (err: any) {
-      console.log(err.error);
-      
-      if (err.response && err.response.data) {
-        return rejectWithValue(err.response.data.error || 'Registration failed');
-      }else if(err.error){
+    } catch (err: unknown) {
+      function isAxiosErrorWithResponse(error: unknown): error is { response: { data: { error?: string } } } {
+        return (
+          typeof error === 'object' &&
+          error !== null &&
+          'response' in error &&
+          typeof (error as { response?: unknown }).response === 'object' &&
+          (error as { response?: unknown }).response !== null &&
+          'data' in (error as { response?: { data?: unknown } }).response!
+        );
+      }
+      function hasErrorProp(error: unknown): error is { error: string } {
+        return (
+          typeof error === 'object' &&
+          error !== null &&
+          'error' in error
+        );
+      }
+      if (hasErrorProp(err)) {
+        console.log(err.error);
+      }
+      if (isAxiosErrorWithResponse(err)) {
+        return rejectWithValue((err.response.data as { error?: string }).error || 'Registration failed');
+      } else if (hasErrorProp(err)) {
         return rejectWithValue(err.error);
-      }else{
-      return rejectWithValue('An unexpected error occurred during registration');
+      } else {
+        return rejectWithValue('An unexpected error occurred during registration');
       }
     }
   }

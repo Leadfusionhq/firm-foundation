@@ -1,6 +1,6 @@
 'use client'
 
-import { Metadata } from "next";
+// import { Metadata } from "next";
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 

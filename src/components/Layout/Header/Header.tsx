@@ -1,5 +1,6 @@
 // components/Layout/Header.tsx
 import React from 'react';
+import Image from 'next/image';
 // import { Bell } from 'lucide-react';
 
 const Header: React.FC = () => {
@@ -11,9 +12,11 @@ const Header: React.FC = () => {
 
       <div className="flex items-center space-x-4">
         {/* <Bell className="text-gray-500" /> */}
-        <img
+        <Image
           src="https://i.pravatar.cc/40"
           alt="Avatar"
+          width={40}
+          height={40}
           className="w-10 h-10 rounded-full"
         />
       </div>

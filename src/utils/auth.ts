@@ -12,11 +12,12 @@ export const getToken = (req: NextRequest) => {
   return cookie ? cookie : null;
 };
 
-export function decodeToken(token: string): any {
+export function decodeToken(token: string): Record<string, unknown> | null {
   try {
-    const payload = token.split('.')[1]; 
+    const payload = token.split('.')[1];
     return JSON.parse(typeof window !== 'undefined' ? atob(payload) : Buffer.from(payload, 'base64').toString());
   } catch (err) {
+    console.log(err)
     return null;
   }
 }

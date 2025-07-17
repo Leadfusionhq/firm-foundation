@@ -2,7 +2,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '@/redux/auth/authSlice';
 import { removeToken } from '@/utils/auth';
-import { usePathname, useRouter } from 'next/navigation';
+// import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import SidebarItem from './SidebarItem';
 import { adminSidebarItems, userSidebarItems } from './sidebarData';
@@ -11,7 +12,7 @@ import { AppDispatch, RootState } from '@/redux/store';
 const Sidebar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   const { user } = useSelector((state: RootState) => state.auth);
   const role = user?.role;

@@ -7,7 +7,15 @@ import { NextRequest, NextResponse } from 'next/server'
 const JWT_SECRET = process.env.JWT_SECRET || 'your-very-strong-secret-key';
 
 // Helper function to generate JWT token
-const generateToken = (user: any) => {
+interface UserJwtPayload {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  isActive: boolean;
+}
+
+const generateToken = (user: UserJwtPayload) => {
   return jwt.sign(
     { 
       id: user._id, 
