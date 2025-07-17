@@ -6,6 +6,6 @@ export function middleware(req: NextRequest): NextResponse {
   console.log(path);
   // if (path.startsWith('/admin/dashboard')) return authMiddleware(req, 'Admin');
   // if (path.startsWith('/dashboard')) return authMiddleware(req, 'User');
-
+ 
   return NextResponse.next();
 }
