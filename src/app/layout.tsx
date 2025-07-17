@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientComponent from "./ClientComponent"; // Import client provider wrapper
+import Toaster from "@/components/common/Toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <ClientComponent>{children}</ClientComponent>
+        <ClientComponent>
+          <Toaster />
+          {children}
+        </ClientComponent>
       </body>
     </html>
   );

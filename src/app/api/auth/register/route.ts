@@ -6,14 +6,19 @@ import { NextRequest, NextResponse } from 'next/server'
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export async function POST(req: NextRequest) {
+  console.log('trigger in api ...')
   try {
-    const { name, email, password, role } = await req.json()
-
+    const { name, email, password, role, companyName, phoneNumber, zipCode } = await req.json();
+    console.warn({ name, email, password, role, companyName, phoneNumber, zipCode });
     // Validate input
     if (!name || !email || !password) {
       return NextResponse.json({ error: 'All fields are required' }, { status: 400 })
     }
-    
+    if ((role !== 'Admin') && (!companyName || !phoneNumber || !zipCode)) {
+      return NextResponse.json({
+        error: 'Company name, phone number, and zip code are required for users or if role is null',
+      }, { status: 400 })
+    }
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: 'Invalid email format' }, { status: 400 })
     }
@@ -55,7 +60,11 @@ export async function POST(req: NextRequest) {
     console.error('Error in POST /api/auth/register:', error);
     return NextResponse.json({
       error: 'Server error',
-      details: process.env.NODE_ENV === 'production' ? 'Unknown error' : error?.message,
+      details: process.env.NODE_ENV === 'production'
+        ? 'Unknown error'
+        : error instanceof Error
+          ? error.message
+          : 'Unknown error',
     }, { status: 500 });
   }
 }

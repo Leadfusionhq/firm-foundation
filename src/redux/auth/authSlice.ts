@@ -1,6 +1,6 @@
 // redux/slices/authSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { loginUser } from './authActions';
+import { loginUser, registerUser } from './authActions';
 
 interface User {
   id: string;
@@ -14,6 +14,8 @@ interface AuthState {
   user: User | null;
   token: string | null;
   error: string | null;
+  success: boolean;
+  message: string | null;
 }
 
 const initialState: AuthState = {
@@ -21,6 +23,8 @@ const initialState: AuthState = {
   user: null,
   token: null,
   error: null,
+  success: false,
+  message: null,
 };
 
 const authSlice = createSlice({
@@ -32,16 +36,25 @@ const authSlice = createSlice({
       state.token = null;
       state.error = null;
       state.loading = false;
+      state.success = false;
+      state.message = null;
+    },
+    clearError(state) {
+      state.error = null;
+    },
+    clearSuccess(state) {
+      state.success = false;
+      state.message = null;
     },
   },
   extraReducers: (builder) => {
     builder
+      // Login actions
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action: PayloadAction<{ token: string; user: User }>) => {
-        console.log("Login Success", action.payload); // Debug the payload
         state.loading = false;
         state.token = action.payload.token;
         state.user = action.payload.user;
@@ -49,10 +62,23 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      // Register actions
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, action: PayloadAction<{ message: string }>) => {
+        state.loading = false;
+        state.success = true;
+        state.message = action.payload.message;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   },
 });
 
-
-export const { logout } = authSlice.actions;
+export const { logout, clearError, clearSuccess } = authSlice.actions;
 export default authSlice.reducer;

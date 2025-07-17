@@ -11,6 +11,7 @@ axios.interceptors.response.use(
         return response;
       }
 
+      toast.dismiss(); // Dismiss previous toasts
       const successMessage = data?.message || data?.desc || 'Operation successful';
       toast.success(successMessage, {
         position: 'top-right',
@@ -27,13 +28,23 @@ axios.interceptors.response.use(
   (error: any) => {
     if (error.response?.status === 401 || error.response?.statusText === 'Unauthorized') {
       localStorage.clear();
-      window.location.href = '/login';
+      toast.dismiss(); // Dismiss previous toasts
+      toast.error('Session expired or unauthorized. Please login again.', {
+        position: 'top-right',
+        duration: 4000,
+        style: {
+          background: '#f44336',
+          color: '#fff',
+        },
+      });
+      // Do NOT redirect here; let the component handle navigation if needed
     }
 
     const errorData = error.response?.data as any;
     const errorMessage = errorData?.message || errorData?.desc || error.message;
 
     if (errorMessage === 'Validation failed') {
+      toast.dismiss(); // Dismiss previous toasts
       toast.error(errorData?.validation?.body?.message || 'Validation error', {
         position: 'top-right',
         duration: 4000,
@@ -43,6 +54,7 @@ axios.interceptors.response.use(
         },
       });
     } else {
+      toast.dismiss(); // Dismiss previous toasts
       toast.error(errorMessage, {
         position: 'top-right',
         duration: 4000,

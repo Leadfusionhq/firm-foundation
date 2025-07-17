@@ -4,8 +4,8 @@ import { ReactNode, useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/AdminLayout/Header/Header';
-import Sidebar from '@/components/AdminLayout/Sidebar/Sidebar';
+import Header from '@/components/Layout/Header/Header';
+import Sidebar from '@/components/Layout/Sidebar/Sidebar';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   const { user } = useSelector((state: RootState) => state.auth);
