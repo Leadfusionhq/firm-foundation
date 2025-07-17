@@ -15,9 +15,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-interface LoginResponse {
-  token: string;
-}
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')

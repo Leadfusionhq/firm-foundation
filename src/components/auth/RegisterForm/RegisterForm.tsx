@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FieldAttributes } from 'formik';
+
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
@@ -64,16 +66,15 @@ const RegisterForm = () => {
   };
 
   // Custom Formik-compatible Input
-  const FormikInput = ({ label, name, type = 'text', ...props }: { label?: string, name: string, type?: string, [key: string]: any }) => (
+  const FormikInput = ({ label, ...props }: { label?: string } & FieldAttributes<string>) => (
     <div className="w-full mb-2">
       <Field
-        id={name}
-        name={name}
-        type={type}
+        {...props}
         className="h-[66px] border border-[#01010121] rounded-[8px] px-5 text-[18px] font-inter bg-[#FFFFFF] text-[#1C1C1C] focus:border-[#222] outline-none transition w-full"
         {...props}
       />
-      <ErrorMessage name={name} component="div" className="text-red-500 text-xs mt-1" />
+      <ErrorMessage name={props.name} component="div" className="text-red-500 text-xs mt-1" />
+
     </div>
   );
 
@@ -150,8 +151,9 @@ const RegisterForm = () => {
                     className="mt-1"
                   />
                   <label htmlFor="terms" className="text-xs text-gray-500">
-                    I agree to the terms and conditions. By clicking "Sign Up", I certify under penalty of perjury that the information I have provided on this form is true and correct.
+                    I agree to the terms and conditions. By clicking &quot;Sign Up&quot;, I certify under penalty of perjury that the information I have provided on this form is true and correct.
                   </label>
+
                 </div>
                 <ErrorMessage name="terms" component="div" className="text-red-500 text-xs mt-1" />
                 <button

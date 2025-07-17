@@ -1,6 +1,6 @@
 // components/Layout/Header.tsx
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 // import { Bell } from 'lucide-react';
 
 const Header: React.FC = () => {
