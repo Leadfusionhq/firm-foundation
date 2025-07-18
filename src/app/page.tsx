@@ -18,11 +18,11 @@ export default function Home() {
 
         {/* ✨ New content block for "Site in Progress" */}
         <div className="text-center sm:text-left">
-          <h1 className="font-mono text-2xl font-boldmb-2">
+          <h1 className="font-mono text-2xl font-bold mb-2">
             🚧 Site in Progress
           </h1>
-          <p className="font-mono max-w-lg  mt-3">
-            This website is currently under active development. We're working on features like user
+          <p className="font-mono max-w-lg mt-3">
+            This website is currently under active development. We are working on features like user
             management, lead tracking, and admin dashboards.
           </p>
           <p className="font-mono text-gray-600 dark:text-gray-300 mt-3">
@@ -38,8 +38,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-     
     </div>
   );
 }
