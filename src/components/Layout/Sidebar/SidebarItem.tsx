@@ -1,13 +1,13 @@
-'use client';
+import Image from 'next/image';
+import { FC } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { FC } from 'react';
 
 interface SidebarItemProps {
   item: {
     id: string;
     name: string;
-    icon: React.ElementType;
+    icon: React.ElementType | string; // icon can be a component or a path
     link: string;
   };
 }
@@ -23,7 +23,17 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
           isActive ? 'bg-[#A8906B] text-white font-semibold' : 'hover:bg-gray-700'
         }`}
       >
-        <item.icon />
+        {typeof item.icon === 'string' ? (
+          <Image
+            src={item.icon}
+            alt={item.name}
+            width={23}
+            height={24}
+            className="object-contain"
+          />
+        ) : (
+          <item.icon />
+        )}
         <span>{item.name}</span>
       </div>
     </Link>

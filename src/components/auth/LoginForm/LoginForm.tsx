@@ -1,9 +1,8 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '@/redux/auth/authActions';
@@ -15,14 +14,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-
 const LoginForm = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState<'Admin' | 'Client'>('Admin');
   const dispatch = useDispatch<AppDispatch>();
-  const router = useRouter()
+  const router = useRouter();
+
   const { user, loading, error } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
@@ -42,11 +39,11 @@ const LoginForm = () => {
     if (error) {
       toast.dismiss();
       toast.error(error);
+      // Clear error state after a delay to allow the toast to be shown
+      setTimeout(() => {
+        dispatch(clearError());
+      }, 3000);
     }
-    // Cleanup function to clear error state on unmount
-    return () => {
-      dispatch(clearError());
-    };
   }, [error, dispatch]);
 
   const validationSchema = Yup.object().shape({
@@ -93,8 +90,8 @@ const LoginForm = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={({ email, password }) => {
-              dispatch(loginUser({ email, password }));
+            onSubmit={({ email, password }, { setSubmitting }) => {
+              dispatch(loginUser({ email, password })).finally(() => setSubmitting(false));
             }}
           >
             {({ values, handleChange, handleBlur, isSubmitting }) => (
@@ -108,7 +105,6 @@ const LoginForm = () => {
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    
                     className="h-[66px] border border-[#01010121] rounded-[8px] px-5 text-[18px] font-inter bg-[#FFFFFF] text-[#1C1C1C] focus:border-[#222] outline-none transition w-full"
                   />
                   <ErrorMessage name="email" component="div" className="text-red-500 text-xs mt-1" />
@@ -160,7 +156,7 @@ const LoginForm = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

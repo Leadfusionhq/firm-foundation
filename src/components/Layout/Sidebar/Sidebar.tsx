@@ -19,38 +19,42 @@ const Sidebar = () => {
 
   const sidebarItems = role === 'Admin' ? adminSidebarItems : userSidebarItems;
 
-  const handleLogout = () => {
-    dispatch(logout());
-    removeToken();
-    router.push('/login');
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (error) {
+      console.error('Logout failed', error);
+    } finally {
+      dispatch(logout());
+      removeToken();
+      router.push('/login');
+    }
   };
 
   return (
-    <aside className="bg-black text-white w-64 h-screen flex flex-col justify-between p-6 fixed left-0 top-0">
-      <div>
-        <div className="mb-12 border-b border-b-white/10">
-          <Image
-            src="/images/logo.svg"
-            alt="Logo"
-            width={80}
-            height={80}
-            className="mx-auto mb-2"
-          />
-        </div>
-
-        <nav className="space-y-4">
-          {sidebarItems.map((item) => (
-            <SidebarItem key={item.id} item={item} />
-          ))}
-        </nav>
+<aside className="bg-black text-white w-64 h-screen fixed left-0 top-0 flex flex-col justify-between">
+      <div className="logo-container p-6 border-b border-white/20">
+        <Image
+          src="/images/logo.svg"
+          alt="Logo"
+          width={80}
+          height={80}
+          className="mx-auto"
+        />
       </div>
-
-      <button
-        className="bg-[#E5D6990D] text-[#A8906B] font-semibold rounded-full py-2 px-4"
-        onClick={handleLogout}
-      >
-        Log Out
-      </button>
+      <nav className="sidebar-nav flex-1 px-6 py-4 space-y-4">
+        {sidebarItems.map((item) => (
+          <SidebarItem key={item.id} item={item} />
+        ))}
+      </nav>
+      <div className="logout-container px-6 py-4">
+        <button
+          className="w-full bg-[#E5D6990D] text-[#A8906B] font-semibold rounded-full py-2 px-4"
+          onClick={handleLogout}
+        >
+          Log Out
+        </button>
+      </div>
     </aside>
   );
 };

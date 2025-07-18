@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { saveToken } from '@/utils/auth';
 import axiosWrapper from '@/utils/api';
+import { API_URL } from '@/utils/apiUrl';
 
 interface User {
   id: string;
@@ -19,7 +20,7 @@ export const loginUser = createAsyncThunk<LoginResponse, { email: string; passwo
   'auth/loginUser',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post<LoginResponse>('/api/auth/login', { email, password });
+      const { data } = await axios.post<LoginResponse>(API_URL.LOGIN_USER, { email, password });
       saveToken(data.token);
       return data;
     } catch (err: unknown) {
@@ -49,7 +50,7 @@ export const registerUser = createAsyncThunk<{ message: string }, { name: string
     { rejectWithValue }
   ) => {
     try {
-      const data = await axiosWrapper('post', `/api/auth/register`, {
+      const data = await axiosWrapper('post', API_URL.REGISTER_USER, {
         name,
         email,
         password,
