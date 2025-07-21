@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import UserTable from "@/components/admin-dashboard/user-management/User/Users";
-export default function UserManagement() {
+import AddNewUser from "@/components/admin-dashboard/user-management/User/AddNewUser";
+export default function addUser() {
 
   return (
     <div className="user-management-container">
-      <UserTable />
+      <AddNewUser />
     </div>
   );
 }

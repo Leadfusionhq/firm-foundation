@@ -28,6 +28,8 @@ const userSchema = new Schema(
 
     companyName: {
       type: String,
+      required: false,
+
       // required: function (this: mongoose.Document) {
       //   return this.get('role') === 'User';
       // },
@@ -35,6 +37,8 @@ const userSchema = new Schema(
 
     phoneNumber: {
       type: String,
+      required: false,
+
       // required: function (this: mongoose.Document) {
       //   return this.get('role') === 'User';
       // },
