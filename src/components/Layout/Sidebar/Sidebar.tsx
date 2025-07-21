@@ -8,7 +8,6 @@ import Image from 'next/image';
 import SidebarItem from './SidebarItem';
 import { adminSidebarItems, userSidebarItems } from './sidebarData';
 import { AppDispatch, RootState } from '@/redux/store';
-
 const Sidebar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();

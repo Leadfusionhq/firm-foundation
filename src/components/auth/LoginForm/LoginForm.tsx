@@ -57,36 +57,32 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAF8F6] relative">
-      <div className="w-full max-w-[500px]">
+    <div className="min-h-screen flex flex-col items-center justify-center relative bg-[url('/images/log_bg.png')] bg-cover bg-center bg-no-repeat">
+      <div className="w-full max-w-[760px] p-5 mx-auto my-auto">
         {/* Top Section with Logo and Role Switch */}
-        <div className="relative flex flex-col items-center rounded-t-lg mt-[80px]" style={{ background: 'linear-gradient(90deg, #BFA46F 0%, #E5C97B 100%)' }}>
-          <div className="flex flex-col items-center -mt-12">
-            <div className="bg-[#000] rounded-full p-4 shadow-md mt-0 mb-2">
-              <Image src="/images/logo.svg" alt="Firm Foundations Marketing" width={100} height={100} />
+        <div className="relative flex flex-col items-center rounded-t-3xl " style={{ background: 'linear-gradient(90deg,  #204D9D 0%, #306A64 50%, #204D9D 100%' }}>
+        <div className=" mrg_img flex flex-col items-center -mt-8 xs:-mt-10   sm:-mt-12  md:-mt-16   lg:-mt-20  xl:-mt-24  ">
+            <div className="otr_img rounded-full shadow-md  mb-2 bg-black ">
+              <div className="rounded-full w-[90px] h-[90px] md:w-[120px] md:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[200px] xl:h-[200px]  "> 
+                <Image   className="log_img rounded-full w-full  " src="/images/logo.svg"   alt="Firm Foundations Marketing"  width={100}   height={100}  />
+              </div>
             </div>
           </div>
-          <div className="flex justify-center gap-2 mt-2 mb-4">
-            <button
-              type="button"
-              className={`px-5 py-2 rounded-full font-medium text-sm transition-all ${role === 'Admin' ? 'bg-black text-white' : 'bg-transparent border border-black text-black'}`}
-              onClick={() => setRole('Admin')}
-            >
-              Login as Admin
-            </button>
-            <button
-              type="button"
-              className={`px-5 py-2 rounded-full font-medium text-sm transition-all ${role === 'Client' ? 'bg-black text-white' : 'bg-transparent border border-black text-black'}`}
-              onClick={() => setRole('Client')}
-            >
+          <div className="flex justify-center gap-3 mt-4.5 mb-5.5 max-[575px]:flex-wrap max-[575px]:gap-y-2 m-2">
+          <button type="button" className={` cursor-pointer px-7.5 py-3.5 rounded-full font-medium text-xs  max-[575px]:w-full	  ${role === 'Admin' ? 'bg-white black-white border-white' : 'bg-transparent border  text-white'}`}
+            onClick={() => setRole('Admin')} >
+            Login as Admin
+          </button>
+            <button type="button" className={`cursor-pointer px-7.5 py-3.5 rounded-full font-medium text-xs	 max-[575px]:w-full  ${role === 'Client' ? 'bg-white text-black  border-white' : 'bg-transparent border  text-white'}`}
+              onClick={() => setRole('Client')} >
               Login as Client
             </button>
-          </div>
+          </div>  
         </div>
         {/* Form Section */}
-        <div className="bg-white p-8 rounded-b-lg shadow-md w-full -mt-2">
-          <h2 className="text-[40px] md:text-[54px] text-[#000] font-bold text-center mb-2 tracking-wide uppercase">Welcome Back</h2>
-          <p className='text-[#1C1C1C] mb-[30px] text-[18px] text-center'>Sign in to access your Lead Manager and stay on top of your leads—all in one place.</p>
+        <div className="bg-white w-full rounded-b-3xl shadow-md p-[20px] px-[22px]   sm:p-8 sm:pb-14 sm:px-12">
+          <h1 className=" text-[#000] font-semibold leading-none text-center mb-0 tracking-wide uppercase">Welcome Back</h1>
+          <p className='sign_txt text-[#1C1C1C] mb-[30px] text-[18px] leading-7 text-center m-auto max-w-[520px]'>Sign in to access your Lead Manager and stay on top of your leads—all in one place.</p>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -96,7 +92,7 @@ const LoginForm = () => {
           >
             {({ values, handleChange, handleBlur, isSubmitting }) => (
               <Form className="space-y-4">
-                <div>
+                <div className='mb-5'>
                   <Field
                     type="email"
                     name="email"
@@ -109,7 +105,7 @@ const LoginForm = () => {
                   />
                   <ErrorMessage name="email" component="div" className="text-red-500 text-xs mt-1" />
                 </div>
-                <div className="relative">
+                <div className="relative mb-5">
                   <Field
                     type={showPassword ? 'text' : 'password'}
                     name="password"
@@ -129,29 +125,33 @@ const LoginForm = () => {
                   >
                     {showPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                   </button>
-                  <ErrorMessage name="password" component="div" className="text-red-500 text-xs mt-1" />
+                  <ErrorMessage name="password" component="div" className="absolute text-red-500 text-xs mt-1 " />
                 </div>
                 {/* Options Row */}
-                <div className="flex items-center justify-between mt-2">
-                  <label className="flex items-center text-sm text-gray-700">
-                    <input type="checkbox" className="mr-2 accent-[#BFA46F]" />
+                <div className="flex items-center justify-between mt-6 max-[575px]:flex-wrap">
+                  <label className="flex items-center text-gray-700 max-[575px]:w-full">
+                    <input type="checkbox" className=" border border-[#01010121] text-base w-[30px] h-[30px] mr-2 accent-[#01010121]
+                   focus:border-[#010101] focus:ring-2 focus:ring-[#01010121] " />
                     Remember me
                   </label>
-                  <Link href="#" className="text-sm text-[#BFA46F] hover:underline">Forgot password?</Link>
+                  <Link href="#" className="text-base	 text-[#1C1C1C] hover:underline max-[575px]:w-full max-[575px]:text-end">Forgot password?</Link>
                 </div>
+                <div className='w-full flex justify-center '>
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-[#000] text-white rounded-md font-bold text-lg hover:bg-[#222] transition-all"
-                  disabled={isSubmitting || loading}
-                >
-                  {isSubmitting || loading ? 'Logging in...' : 'LOG IN'}
+                  className=" m-auto w-full max-w-[575px] py-3 px-[50px] text-white rounded-md font-bold text-lg bg-[#000]
+                  hover:bg-[linear-gradient(90deg,#306A64_0%,#204D9D_50%,#306A64_100%)]
+                  transition-all duration-600 cursor-pointer
+                  sm:w-fit sm:py-[20px] sm:px-[78px]"disabled={isSubmitting || loading} > {isSubmitting || loading ? 'Logging in...' : 'LOG IN'}
                 </button>
+
+                </div>
               </Form>
             )}
           </Formik>
-          <div className="text-center mt-4 text-sm text-[#1C1C1C]">
+          <div className="text-center mt-4 text-base text-[#1C1C1C]">
             Don&apos;t have an account?{' '}
-            <Link href="/register" className="text-[#BFA46F] font-semibold hover:underline">Sign Up</Link>
+            <Link href="/register" className="text-[#1C1C1C] font-bold hover:underline">Sign Up</Link>
           </div>
         </div>
       </div>

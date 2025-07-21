@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import { registerUser } from '@/redux/auth/authActions';
 import { RootState, AppDispatch } from '@/redux/store';
 import { clearError, clearSuccess } from '@/redux/auth/authSlice';
+import styles from './RegisterForm.module.css'
 
 const RegisterForm = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -67,7 +68,7 @@ const RegisterForm = () => {
 
   // Custom Formik-compatible Input
   const FormikInput = ({ label, ...props }: { label?: string } & FieldAttributes<string>) => (
-    <div className="w-full mb-2">
+    <div className="{styles.blog} w-full mb-2">
       <Field
         {...props}
         className="h-[66px] border border-[#01010121] rounded-[8px] px-5 text-[18px] font-inter bg-[#FFFFFF] text-[#1C1C1C] focus:border-[#222] outline-none transition w-full"
@@ -79,9 +80,10 @@ const RegisterForm = () => {
   );
 
   return (
-    <div className="register-container container mx-auto min-h-screen flex flex-col px-4 md:px-0">
+  <div className="reigster_box bg-[url('/images/log_bg.png')] bg-cover bg-no-repeat h-screen ">
+      <div className="register-container container mx-auto min-h-screen flex flex-col px-4 md:px-0 ">
       {/* Centered Logo Above Grid */}
-      <div className="flex justify-center items-center w-full mt-8 ">
+      <div className={`flex justify-center items-center w-full mt-8 ${styles.diss}`}>
         <Image
           src="/images/logo.svg"
           alt="Logo"
@@ -92,15 +94,15 @@ const RegisterForm = () => {
         />
       </div>
       {/* Grid: Form and Side Image */}
-      <div className="grid grid-cols-1 md:grid-cols-2 flex-1 w-full items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 flex-1 w-full items-start mt-11.5">
         {/* Left: Form Section */}
-        <div className="flex flex-col justify-start items-center py-8 md:py-0 pt-0 md:pt-8">
+        <div className="flex flex-col justify-start items-center mt-2 py-8 md:py-0 pt-0  pr-10">
           {/* Title */}
           <h1 className="font-bold text-[#000000] font-[Times_New_Roman] text-[54px] leading-[100%] tracking-[0.01em] text-center uppercase">
             Sign Up to Get Qualified Leads Today!
           </h1>
           {/* Subtitle */}
-          <p className="font-inter font-normal text-[18px] leading-[28px] text-center mt-4 text-[#222]">
+          <p className="font-inter font-normal text-[18px] leading-[28px] text-center mt-4 text-[#222] m-auto max-w-[600px]">
             Create your account to start using Lead Manager—organize, track, and grow your leads with ease from one simple dashboard.
           </p>
           {/* Formik Form */}
@@ -171,10 +173,10 @@ const RegisterForm = () => {
           </Formik>
         </div>
         {/* Right: Side Image */}
-        <div className="flex items-start justify-center py-8 md:py-0 pt-0 md:pt-8">
+        <div className="flex items-start justify-center py-8 md:py-0 pt-0 ">
           <div className="flex justify-center items-start w-full h-full">
             <Image
-              src="/images/register/side-image-placeholder.jpg"
+              src="/images/register/side-image-placeholder.png"
               alt="Event"
               width={779}
               height={1186}
@@ -185,6 +187,7 @@ const RegisterForm = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

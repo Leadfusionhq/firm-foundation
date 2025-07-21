@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Times New Roman';
+  src: url('/fonts/OPTITimes-Roman.woff2') format('woff2'),
+      url('/fonts/OPTITimes-Roman.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.inter-uniquifier {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -22,5 +37,56 @@
 body {
   background: #ffffff;
   color: #1C1C1C;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Times New Roman';
+}
+h1{
+font-weight: 700;
+font-size: 54px;
+line-height: 100%;
+
+}
+
+@media screen and (max-width: 1499px) {
+.log_img{
+  max-width: 120px;
+  width: 100%;
+  max-height: 120px;
+  height: 100%;
+}
+.otr_img{
+  max-width: 120px;
+  width: 100%;
+  max-height: 120px;
+  height: 100%;
+}
+.mrg_img{
+  margin-top: -60px;
+}
+}
+@media screen and (max-width: 1199px) {
+  h1 {
+    font-size: 46px;
+}
+}
+
+@media screen and (max-width: 1024px) {
+
+  h1 {
+    font-size: 32px;
+}
+.sign_txt{
+  margin-top: 5px;
+  font-size: 15px;
+}
+}
+@media screen and (max-width: 575px) {
+  .sign_txt{
+ line-height: 1.5;
+  }
+  .mrg_img{
+    margin-top: -40px;
+  }
 }
