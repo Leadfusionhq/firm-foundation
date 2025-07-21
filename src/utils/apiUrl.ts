@@ -9,6 +9,11 @@ export const API_URL = {
 
     // Admin User Management URLs
     GET_ALL_USERS: `${USER_API_BASE}/`,
+    GET_ALL_REGULAR_USERS: `${USER_API_BASE}?role=User`,
+    GET_ALL_ADMINS: `${USER_API_BASE}?role=Admin`,
+
+    ADD_USER: `${USER_API_BASE}/add`,
+
     UPDATE_USER: `${USER_API_BASE}/user/edit/:id`,
 
 

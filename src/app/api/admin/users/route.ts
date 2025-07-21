@@ -3,29 +3,33 @@ import { User } from '@/models/User'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
-  try {
-    await connectDB()
-    const users = await User.find({}).select('id name email role isActive')
+  await connectDB();
 
-    if (!users) {
-      return NextResponse.json({ error: 'No users found' }, { status: 404 })
-    }
-    return NextResponse.json({
-      message: 'Users fetched successfully',
-      data: users.map((user) => ({
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        isActive: user.isActive,
-      })),
-    }, { status: 200 })
+  const url = new URL(req.url);
+  const role = url.searchParams.get('role');
+  console.warn('role',role);
+  const filter = role ? { role } : {};
 
-  } catch (error: unknown) {
-    console.error('Error in GET /api/users:', error)
+  const users = await User.find(filter).select('_id name email role isActive companyName phoneNumber zipCode createdAt updatedAt');
 
-    const errorMessage = process.env.NODE_ENV === 'production' ? 'Something went wrong. Please try again later.' : (error instanceof Error ? error.message : 'Unknown error')
-    
-    return NextResponse.json({ error: errorMessage }, { status: 500 })
+  if (!users || users.length === 0) {
+    return NextResponse.json({ error: 'No users found' }, { status: 404 });
   }
+
+  return NextResponse.json({
+    message: 'Users fetched successfully',
+    all:users,
+    data: users.map(user => ({
+      id: user?._id,
+      name: user?.name,
+      email: user?.email,
+      role: user?.role,
+      isActive: user?.isActive,
+      companyName: user?.companyName,
+      phoneNumber: user?.phoneNumber,
+      zipCode: user?.zipCode,
+      createdAt: user?.createdAt,
+      updatedAt: user?.updatedAt,
+    })),
+  }, { status: 200 });
 }
