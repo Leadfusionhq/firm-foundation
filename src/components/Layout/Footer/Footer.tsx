@@ -8,7 +8,7 @@ function Footer() {
             <div className='flex md:flex-row flex-col justify-between md:gap-16 gap-6 max-w-[1200px] mx-auto py-16'>
                 <div className='md:w-[35%] w-full'>
                     <Image src="/images/footer-logo.png" alt="Logo" height={200} width={200} className='w-[120px]'/>
-                    <p className='text-white mt-4 font-light text-sm'>At Lead Fusion, we&apos;ve engineered every part of our platform to help  companies win — from the moment a lead comes in, to the final closed deal.</p>
+                    <p className='text-white mt-4 font-light text-sm'>{`At Lead Fusion, we've engineered every part of our platform to help  companies win — from the moment a lead comes in, to the final closed deal.`}</p>
                 </div>
                 <div className='md:w-[20%] w-full md:space-y-4 space-y-2'>
                     <p className='text-white text-xl font-bold'>Quick Links</p>
@@ -34,7 +34,7 @@ function Footer() {
                 </div>
                 <div className='md:w-[25%] w-full md:space-y-4 space-y-2'>
                     <p className='text-white text-xl font-bold'>Contact Us</p>
-                    <p className='text-white font-extralight text-sm'>Whether you're looking for more information or ready to get started, we're here to support you with quick answers and real solutions.</p>
+                    <p className='text-white font-extralight text-sm'>{`Whether you're looking for more information or ready to get started, we're here to support you with quick answers and real solutions.`}</p>
                     <button className='bg-white hover:bg-transparent hover:text-[#fff] border border-[#fff] duration-300 px-4 py-2 text-sm text-[#000] rounded-[6px]'>Contact Us</button>
                 </div>
             </div>
