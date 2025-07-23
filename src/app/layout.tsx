@@ -3,6 +3,17 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientComponent from "./ClientComponent"; // Import client provider wrapper
 import Toaster from "@/components/common/Toaster";
+import { Inter } from 'next/font/google';
+import Footer from "@/components/Layout/Footer/Footer";
+import MainHeader from "@/components/Layout/MainHeader/MainHeader";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import AOSInitializer from "@/components/Layout/AOSInitializer/AOSInitializer";
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,16 +31,21 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+
   children,
 }: {
   children: React.ReactNode;
 }) {
+
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${inter.className}`}>
       <body>
+        <AOSInitializer/>
         <ClientComponent>
           <Toaster />
+          <MainHeader/>
           {children}
+          <Footer/>
         </ClientComponent>
       </body>
     </html>
