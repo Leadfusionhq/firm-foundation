@@ -13,6 +13,7 @@ import { clearError } from '@/redux/auth/authSlice';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,7 +59,8 @@ const LoginForm = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative bg-[url('/images/log_bg.png')] bg-cover bg-center bg-no-repeat">
-      <div className="w-full max-w-[760px] p-5 mx-auto my-auto">
+      <div className="w-full max-w-[760px] p-5 mx-[150px] 
+            my-[50px] md:my-[75px] lg:my-[150px]">
         {/* Top Section with Logo and Role Switch */}
         <div className="relative flex flex-col items-center rounded-t-3xl " style={{ background: 'linear-gradient(90deg,  #204D9D 0%, #306A64 50%, #204D9D 100%' }}>
         <div className=" mrg_img flex flex-col items-center -mt-8 xs:-mt-10   sm:-mt-12  md:-mt-16   lg:-mt-20  xl:-mt-24  ">
@@ -81,7 +83,8 @@ const LoginForm = () => {
         </div>
         {/* Form Section */}
         <div className="bg-white w-full rounded-b-3xl shadow-md p-[20px] px-[22px]   sm:p-8 sm:pb-14 sm:px-12">
-          <h1 className=" text-[#000] font-semibold leading-none text-center mb-0 tracking-wide uppercase">Welcome Back</h1>
+          <h1 className={`text-[#000] font-semibold leading-none text-center mb-0 tracking-wide uppercase
+          text-sm max-[575px]:text-xs">${styles.login_h1}`}> Welcome Back </h1>
           <p className='sign_txt text-[#1C1C1C] mb-[30px] text-[18px] leading-7 text-center m-auto max-w-[520px]'>Sign in to access your Lead Manager and stay on top of your leads—all in one place.</p>
           <Formik
             initialValues={initialValues}

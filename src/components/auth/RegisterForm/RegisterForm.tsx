@@ -48,6 +48,7 @@ const RegisterForm = () => {
     terms: false,
   };
 
+
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -81,24 +82,26 @@ const RegisterForm = () => {
 
   return (
   <div className="reigster_box bg-[url('/images/log_bg.png')] bg-cover bg-no-repeat h-screen ">
-      <div className="register-container container mx-auto min-h-screen flex flex-col px-4 md:px-0 ">
+    <div className='outer_register p-[20px] sm:p-[10px] md:p-[40px] lg:py-[50px] lg:px-[50px]'>
+      <div className="register-container container sm:p-[0px] mx-auto min-h-screen flex flex-col px-4 md:px-0  ">
       {/* Centered Logo Above Grid */}
-      <div className={`flex justify-center items-center w-full mt-8 ${styles.diss}`}>
+      <div className={`flex justify-center items-center w-full   ${styles.diss}`}>
         <Image
           src="/images/logo.svg"
           alt="Logo"
           width={167}
           height={167}
-          className="rounded-full"
+          className="rounded-full w-[167px] h-[167px] max-[991px]:w-[120px] max-[991px]:h-[120px] max-[575px]:w-[80px] max-[575px]:h-[80px] "
           priority
         />
       </div>
       {/* Grid: Form and Side Image */}
-      <div className="grid grid-cols-1 md:grid-cols-2 flex-1 w-full items-start mt-11.5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center flex-1 w-full  mt-[10px] lg:mt-11.5">
         {/* Left: Form Section */}
-        <div className="flex flex-col justify-start items-center mt-2 py-8 md:py-0 pt-0  pr-10">
+       <div className="outer_inputrsgt lg:mb-8 sm:mb-1">
+       <div className="mb-2   max-lg:pr-0  flex flex-col justify-start items-center mt-2 py-8 md:py-0 pt-0  pr-10">
           {/* Title */}
-          <h1 className="font-bold text-[#000000] font-[Times_New_Roman] text-[54px] leading-[100%] tracking-[0.01em] text-center uppercase">
+          <h1 className=" lg: max-w-[550px] [letter-spacing:0.1em] font-bold text-[#000000] font-[Times_New_Roman] text-[54px] leading-[100%] tracking-[0.01em] text-center uppercase">
             Sign Up to Get Qualified Leads Today!
           </h1>
           {/* Subtitle */}
@@ -112,80 +115,116 @@ const RegisterForm = () => {
             onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
-              <Form className="w-[571px] min-h-[673px] rounded-[12px] p-0 mt-8  flex flex-col gap-4">
+              <Form className="max-w-[571px]  rounded-[12px] p-0 mt-8  flex flex-col gap-4">
                 <FormikInput
                     name="name"
                     placeholder="Name"
+                     className="w-full p-5 border border-[#E0E0E0] rounded-lg
+                      placeholder-[#999] placeholder-opacity-100
+                      focus:placeholder-[#1C1C1C] focus:border-[#1C1C1C]
+                        transition-colors duration-200]"
                 />
                 <FormikInput
                     name="email"
                     placeholder="Email Address"
                     type="email"
+                    className="w-full p-5 border border-[#E0E0E0] rounded-lg
+                    placeholder-[#999] placeholder-opacity-100
+                    focus:placeholder-[#1C1C1C] focus:border-[#1C1C1C]
+                      transition-colors duration-200]"
                 />
                 <FormikInput
                     name="password"
                     placeholder="Password"
                     type="password"
+                    className="w-full p-5 border border-[#E0E0E0] rounded-lg
+                    placeholder-[#999] placeholder-opacity-100
+                    focus:placeholder-[#1C1C1C] focus:border-[#1C1C1C]
+                      transition-colors duration-200]"
                 />
                 <FormikInput
                     name="confirmPassword"
                     placeholder="Confirm Password"
                     type="password"
+                    className="w-full p-5 border border-[#E0E0E0] rounded-lg
+                    placeholder-[#999] placeholder-opacity-100
+                    focus:placeholder-[#1C1C1C] focus:border-[#1C1C1C]
+                      transition-colors duration-200]"
                 />
                 <FormikInput
                     name="companyName"
                     placeholder="Company Name"
+                    className="w-full p-5 border border-[#E0E0E0] rounded-lg
+                    placeholder-[#999] placeholder-opacity-100
+                    focus:placeholder-[#1C1C1C] focus:border-[#1C1C1C]
+                      transition-colors duration-200]"
                 />
                 <FormikInput
                     name="phoneNumber"
                     placeholder="Phone Number"
+                    className="w-full p-5 border border-[#E0E0E0] rounded-lg
+                    placeholder-[#999] placeholder-opacity-100
+                    focus:placeholder-[#1C1C1C] focus:border-[#1C1C1C]
+                      transition-colors duration-200]"
                 />
                 <FormikInput
                     name="zipCode"
                     placeholder="Zip Code"
+                    className="w-full p-5 border border-[#E0E0E0] rounded-lg
+                    placeholder-[#999] placeholder-opacity-100
+                    focus:placeholder-[#1C1C1C] focus:border-[#1C1C1C]
+                      transition-colors duration-200]"
                 />
 
-                <div className="flex items-start gap-2 mt-2 w-full">
+                <div className="flex items-start gap-2 mt-2 w-full max-w-[520px]">
                   <Field
                     type="checkbox"
                     name="terms"
                     id="terms"
-                    className="mt-1"
+                    className="mt-0 border border-[#01010121] text-base w-[33px] h-[33px] accent-[#01010121]
+                   focus:border-[#010101]  focus:ring-[#01010121]"
                   />
-                  <label htmlFor="terms" className="text-xs text-gray-500">
-                    I agree to the terms and conditions. By clicking &quot;Sign Up&quot;, I certify under penalty of perjury that the information I have provided on this form is true and correct.
+                  <label htmlFor="terms" className=" text-[14px] text-xs text-gray-500 leading-[1.7]">
+                    I agree to the terms and conditions. <br></br>By clicking &quot;Sign Up&quot;, I certify under penalty of perjury that the information I have provided on this form is true and correct.
                   </label>
 
                 </div>
                 <ErrorMessage name="terms" component="div" className="text-red-500 text-xs mt-1" />
+                <div className='outr_sbmit mt-10 w-full flex justify-center '>
                 <button
                   type="submit"
-                  className="h-[56px] bg-[#010101] text-white text-[20px] font-inter font-semibold rounded-[8px] border-none cursor-pointer transition hover:bg-[#222] mt-4"
+                  className=" m-auto w-full max-w-[575px] py-3 px-[50px] text-white rounded-md font-bold text-lg bg-[#000] hover:bg-[linear-gradient(90deg,#306A64_0%,#204D9D_50%,#306A64_100%)] transition-all duration-600 cursor-pointer sm:w-fit sm:py-[18px] sm:px-[68px]"
                   disabled={isSubmitting || loading}
                 >
                   {isSubmitting || loading ? 'Signing Up...' : 'SIGN UP'}
                 </button>
-                <p className="text-center text-xs text-gray-500 mt-2">
-                  Already have an account? <Link href="/login" className="text-black underline">Sign In</Link>
+                </div>
+                <p className="text-[16px] text-center text-xs text-gray-500 mt-2">
+                  Already have an account? <Link href="/login" className="text-black underline text-[16px] text-center text-xs text-black-600">Sign Up</Link>
                 </p>
               </Form>
             )}
           </Formik>
         </div>
+
+
+       </div>
         {/* Right: Side Image */}
         <div className="flex items-start justify-center py-8 md:py-0 pt-0 ">
           <div className="flex justify-center items-start w-full h-full">
-            <Image
-              src="/images/register/side-image-placeholder.png"
-              alt="Event"
-              width={779}
-              height={1186}
-              className="object-cover rounded-[25px]"
-              priority={false}
-            />
+          <Image
+            src="/images/register/side-image-placeholder.png"
+            alt="Event"
+            width={779}
+            height={100}
+            className="w-full h-auto object-cover rounded-[25px]"
+            priority={false}
+            sizes="100vw"
+          />
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
   );

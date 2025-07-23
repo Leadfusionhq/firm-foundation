@@ -45,11 +45,15 @@ h1,h2,h3,h4,h5,h6{
 h1{
 font-weight: 700;
 font-size: 54px;
-line-height: 100%;
+line-height: 68px;
 
 }
 
 @media screen and (max-width: 1499px) {
+  h1{
+  font-size: 36px;
+  line-height: 48px;
+  }
 .log_img{
   max-width: 120px;
   width: 100%;
@@ -68,7 +72,7 @@ line-height: 100%;
 }
 @media screen and (max-width: 1199px) {
   h1 {
-    font-size: 46px;
+    font-size: 34px;
 }
 }
 
@@ -76,6 +80,7 @@ line-height: 100%;
 
   h1 {
     font-size: 32px;
+    line-height: 37px;
 }
 .sign_txt{
   margin-top: 5px;
@@ -83,6 +88,10 @@ line-height: 100%;
 }
 }
 @media screen and (max-width: 575px) {
+  h1{
+    line-height: 38px;
+    font-size: 28px;
+  }
   .sign_txt{
  line-height: 1.5;
   }
