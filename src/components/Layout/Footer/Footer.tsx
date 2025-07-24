@@ -7,15 +7,17 @@ function Footer() {
         <section className='bg-[#000] px-4'>
             <div className='flex md:flex-row flex-col justify-between md:gap-16 gap-6 max-w-[1200px] mx-auto py-16'>
                 <div className='md:w-[35%] w-full'>
+                    <Link href="/">
                     <Image src="/images/footer-logo.png" alt="Logo" height={200} width={200} className='w-[120px]'/>
+                    </Link>
                     <p className='text-white mt-4 font-light text-sm'>{`At Lead Fusion, we've engineered every part of our platform to help  companies win — from the moment a lead comes in, to the final closed deal.`}</p>
                 </div>
                 <div className='md:w-[20%] w-full md:space-y-4 space-y-2'>
                     <p className='text-white text-xl font-bold'>Quick Links</p>
-                    <Link href="" className='text-white block font-light text-sm'>Login</Link>
-                    <Link href="" className='text-white block font-light text-sm'>Signup </Link>
-                    <Link href="" className='text-white block font-light text-sm'>Terms of Service</Link>
-                    <Link href="" className='text-white block font-light text-sm'>Privacy Policy</Link>
+                    <Link href="/login" className='text-white block font-light text-sm cusrsor-pointer'>Login</Link>
+                    <Link href="/register" className='text-white block font-light text-sm cusrsor-pointer'>Signup </Link>
+                    <Link href="" className='text-white block font-light text-sm cusrsor-pointer'>Terms of Service</Link>
+                    <Link href="" className='text-white block font-light text-sm cusrsor-pointer'>Privacy Policy</Link>
                 </div>
                 <div className='md:w-[20%] w-full md:space-y-4 space-y-2'>
                     <p className='text-white text-xl font-bold'>Follow on</p>
