@@ -7,32 +7,32 @@ const faqs = [
   {
     question: 'What types of leads do you provide?',
     answer:
-      'We specialize in generating high-quality, verified leads for contractors, realtors, and other service professionals...',
+      `We specialize in generating high-quality, verified leads for contractors, realtors, and other service professionals. Whether you're in home improvement, real estate, solar installation, or any other service industry, we connect you with prospects actively seeking your services.`,
   },
   {
     question: 'How do you verify the leads?',
     answer:
-      'We specialize in generating high-quality, verified leads for contractors, realtors, and other service professionals...',
+      `Our verification process combines automated tools and manual checks to ensure the contact information is accurate and that the lead is genuinely interested in your services. We filter out duplicates and incomplete entries to deliver only quality, ready-to-engage prospects.`,
   },
   {
     question: 'How does your payment structure work?',
     answer:
-      'We specialize in generating high-quality, verified leads for contractors, realtors, and other service professionals...',
+      `There are no setup fees or upfront costs. You only pay as leads are produced and delivered to you. You can choose your preferred method of receiving leads—whether via email, text, or through your preferred CRM—and you are charged only for the verified leads you receive.`,
   },
   {
     question: 'How quickly can I start receiving leads?',
     answer:
-      'We specialize in generating high-quality, verified leads for contractors, realtors, and other service professionals...',
+      `Once you set up your account and specify your target criteria, you can typically start receiving leads within 24 to 48 hours. We work efficiently to ensure a steady flow tailored to your business needs.`,
   },
   {
     question: 'Can I customize my lead criteria?',
     answer:
-      'We specialize in generating high-quality, verified leads for contractors, realtors, and other service professionals...',
+      `Yes! You can customize various parameters including geographic location, type of service inquiries, budget ranges, and other demographics to ensure you receive leads matching your specific target audience.`,
   },
   {
     question: 'What support do you offer if I need help?',
     answer:
-      'We specialize in generating high-quality, verified leads for contractors, realtors, and other service professionals...',
+      `Our dedicated support team is available to assist you anytime. Whether you need help with account setup, adjusting your lead preferences, or have questions about billing, we're here to ensure your experience is smooth and successful.`,
   },
 ];
 

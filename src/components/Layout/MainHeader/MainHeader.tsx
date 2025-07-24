@@ -20,9 +20,11 @@ function MainHeader() {
       <div className='flex justify-between items-center gap-6 py-2 px-4 relative'>
         {/* Left Section */}
         <div className='hidden md:flex gap-3 items-center'>
+          <Link href="/login">
           <button className='border-[#204D9D] border text-[#204D9D] hover:text-white hover:bg-[#204D9D] duration-300 bg-[#fff] rounded-[130px] py-1 px-4'>
             Client Login
           </button>
+          </Link>
           <div className='flex items-center gap-3'>
             <Image src="/images/icons/twitter.png" alt="Twitter" className='w-[15px] h-[15px]' height={15} width={15} />
             <Image src="/images/icons/facebook.png" alt="Facebook" className='w-[15px] h-[15px]' height={15} width={15} />
@@ -33,14 +35,18 @@ function MainHeader() {
 
         {/* Logo */}
         <div>
+          <Link href="/">
           <Image src="/images/header-logo.png" alt="Logo" height={200} width={200} className='w-[60px]' />
+          </Link>
         </div>
 
         {/* Right Section */}
         <div className='hidden md:block'>
+          <Link href="/register">
           <button className='bg-[#204D9D] hover:bg-[#fff] hover:text-[#204D9D] duration-300 rounded-[130px] py-1 px-4 text-[#fff] border-primary-color border'>
             Sign Up
           </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -54,12 +60,16 @@ function MainHeader() {
         {/* Mobile Dropdown */}
         {menuOpen && (
           <div className='absolute top-full right-4 w-[200px] bg-white shadow-lg p-4 rounded z-50 md:hidden'>
+            <Link href="/login">
             <button className='w-full border-primary-color primary-color border bg-white rounded-[130px] py-1 px-4 mb-2'>
               Client Login
             </button>
+            </Link>
+            <Link href="/register">
             <button className='w-full bg-primary-color rounded-[130px] py-1 px-4 text-white border border-primary-color mb-3'>
               Sign Up
             </button>
+            </Link>
             <div className='flex justify-center items-center gap-3'>
               <Image src="/images/icons/twitter.png" alt="Twitter" height={15} width={15} />
               <Image src="/images/icons/facebook.png" alt="Facebook" height={15} width={15} />

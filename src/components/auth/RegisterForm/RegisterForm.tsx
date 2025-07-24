@@ -81,7 +81,7 @@ const RegisterForm = () => {
   );
 
   return (
-  <div className="reigster_box bg-[url('/images/log_bg.png')] bg-cover bg-no-repeat h-screen ">
+  <div className="reigster_box bg-[url('/images/log_bg.png')] bg-cover bg-no-repeat min-h-screen ">
     <div className='outer_register p-[20px] sm:p-[10px] md:p-[40px] lg:py-[50px] lg:px-[50px]'>
       <div className="register-container container sm:p-[0px] mx-auto min-h-screen flex flex-col px-4 md:px-0  ">
       {/* Centered Logo Above Grid */}
