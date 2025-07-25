@@ -43,10 +43,10 @@ const AddNewUser = () => {
     try {
       setSubmitting(true);
       const response = await axiosWrapper('post', API_URL.ADD_USER, values, token ?? undefined);
-      toast.success(response?.message || 'User added successfully!');
+      // toast.success(response?.message || 'User added successfully!');
       resetForm();
     } catch (error) {
-      toast.error(error?.error || 'Unable to add user. Please try again.')
+      // toast.error(error?.error || 'Unable to add user. Please try again.')
     } finally {
       setSubmitting(false);
     }
