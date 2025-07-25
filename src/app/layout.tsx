@@ -9,6 +9,7 @@ import MainHeader from "@/components/Layout/MainHeader/MainHeader";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import AOSInitializer from "@/components/Layout/AOSInitializer/AOSInitializer";
+import ClientLayout from "./ClientLayout"; 
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,23 +33,22 @@ export const metadata: Metadata = {
     icon: '/favicon.png',
   },
 };
-
 export default function RootLayout({
 
   children,
 }: {
   children: React.ReactNode;
 }) {
-
+ 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${inter.className}`}>
       <body>
         <AOSInitializer/>
         <ClientComponent>
+        <ClientLayout>
           <Toaster />
-          <MainHeader/>
-          {children}
-          <Footer/>
+            {children}
+        </ClientLayout>
         </ClientComponent>
       </body>
     </html>

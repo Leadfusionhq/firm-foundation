@@ -5,7 +5,16 @@ import { FieldAttributes } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
+import axiosWrapper from '@/utils/api';
+import { API_URL } from '@/utils/apiUrl';
+
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+
 const AddNewUser = () => {
+
+  const token = useSelector((state: RootState) => state.auth.token);
+
   const initialValues = {
     name: '',
     email: '',
@@ -14,8 +23,7 @@ const AddNewUser = () => {
     companyName: '',
     phoneNumber: '',
     zipCode: '',
-    terms: false,
-    role: 'User', // Default role is 'User'
+    role: 'User',
   };
 
   const validationSchema = Yup.object().shape({
@@ -31,10 +39,17 @@ const AddNewUser = () => {
     role: Yup.string().required('Role is required'),
   });
 
-  const handleSubmit = async (values: typeof initialValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-    setSubmitting(false);
-    // Simulating form submission
-    toast.success("User added successfully!");
+  const handleSubmit = async (values: typeof initialValues, { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }) => {
+    try {
+      setSubmitting(true);
+      const response = await axiosWrapper('post', API_URL.ADD_USER, values, token ?? undefined);
+      toast.success(response?.message || 'User added successfully!');
+      resetForm();
+    } catch (error) {
+      toast.error(error?.error || 'Unable to add user. Please try again.')
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // Custom Formik-compatible Input
@@ -54,10 +69,6 @@ const AddNewUser = () => {
       </div>
     </div>
   );
-  
-  
-
-
 
   return (
     <div className="container mx-auto min-h-screen flex flex-col items-center justify-center px-4 md:px-0 py-8">
@@ -71,36 +82,34 @@ const AddNewUser = () => {
           <Form className="w-full max-w-[900px] space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="col-span-1">
-                <FormikInput name="name" autoComplete="off"  placeholder="Full Name" label="Name" />
+                <FormikInput name="name" autoComplete="off" placeholder="Full Name" label="Name" />
               </div>
               <div className="col-span-1">
-                <FormikInput name="email" autoComplete="off"  placeholder="Email Address" type="email" label="Email" />
+                <FormikInput name="email" autoComplete="off" placeholder="Email Address" type="email" label="Email" />
               </div>
               <div className="col-span-1">
-                <FormikInput name="password" autoComplete="off"  placeholder="Password" type="password" label="Password" />
+                <FormikInput name="password" autoComplete="off" placeholder="Password" type="password" label="Password" />
               </div>
               <div className="col-span-1">
-                <FormikInput name="confirmPassword" autoComplete="off"  placeholder="Confirm Password" type="password" label="Confirm Password" />
+                <FormikInput name="confirmPassword" autoComplete="off" placeholder="Confirm Password" type="password" label="Confirm Password" />
               </div>
               <div className="col-span-1">
-                <FormikInput name="companyName" autoComplete="off"  placeholder="Company Name" label="Company" />
+                <FormikInput name="companyName" autoComplete="off" placeholder="Company Name" label="Company" />
               </div>
               <div className="col-span-1">
-                <FormikInput name="phoneNumber" autoComplete="off"  placeholder="Phone Number" label="Phone Number" />
+                <FormikInput name="phoneNumber" autoComplete="off" placeholder="Phone Number" label="Phone Number" />
               </div>
               <div className="col-span-1">
-                <FormikInput name="zipCode" autoComplete="off"  placeholder="Zip Code" label="Zip Code" />
+                <FormikInput name="zipCode" autoComplete="off" placeholder="Zip Code" label="Zip Code" />
               </div>
-              
-              
             </div>
             <button
-                type="submit"
-                className="w-full h-[56px] bg-[#1C1C1C] text-white text-[20px] font-inter font-semibold rounded-[8px] border-none cursor-pointer transition hover:bg-[#1C1C1C]"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Adding User...' : 'Add User'}
-              </button>
+              type="submit"
+              className="w-full h-[56px] bg-[#1C1C1C] text-white text-[20px] font-inter font-semibold rounded-[8px] border-none cursor-pointer transition hover:bg-[#1C1C1C]"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Adding User...' : 'Add User'}
+            </button>
           </Form>
         )}
       </Formik>
